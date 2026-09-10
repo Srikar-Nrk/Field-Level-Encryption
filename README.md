@@ -4,7 +4,7 @@ Built a PostgreSQL field-level encryption tool designed to encrypt existing data
 
 The current implementation uses **AES-256-GCM envelope encryption** and has been tested against a PostgreSQL database containing multiple related tables.
 
-## Contributions are welcome 
+** Contributions are welcome **
 
 ## Prerequisites
 
