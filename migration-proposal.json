@@ -1,0 +1,4571 @@
+{
+  "generatedAt": "2026-09-09T12:34:49.266Z",
+  "databaseHost": "localhost",
+  "reviewed": true,
+  "note": "Automatically generated and applied: structurally-protected columns (real PK/FK) use deterministic encryption to stay joinable; columns with an active CHECK constraint stay excluded to avoid breaking that constraint; everything else is encrypted unconditionally.",
+  "tables": [
+    {
+      "tableName": "children",
+      "primaryKeyColumn": "id",
+      "primaryKeyColumns": [
+        "id"
+      ],
+      "primaryKeyWarning": null,
+      "existingTriggers": [],
+      "triggerWarning": null,
+      "existingCheckConstraints": [],
+      "checkConstraintWarning": null,
+      "columns": [
+        {
+          "columnName": "id",
+          "dataType": "integer",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": true,
+          "doNotEncryptReason": "This table's primary key — encrypting it would make every row unfindable/unjoinable",
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": true,
+          "needsSpecialTypeHandling": true,
+          "typeHandlingNote": "Column type is \"integer\", not text — encrypted automatically as part of \"encrypt everything\", but confirm this specific column's handling: JSONB values are JSON.stringify'd before encrypting (handled automatically); other non-text types are cast to TEXT first. Review before including in a backfill run if this is an unusual type (array, custom enum, binary/bytea).",
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "hhid",
+          "dataType": "character varying",
+          "characterMaximumLength": 100,
+          "nullable": false,
+          "doNotEncrypt": true,
+          "doNotEncryptReason": "Foreign key referencing families.hhid",
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": true,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "name",
+          "dataType": "character varying",
+          "characterMaximumLength": 150,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": false,
+          "widthWarning": "VARCHAR(150) is too narrow to hold encrypted data — a value using the full declared width would need roughly 245 characters once encrypted (45 chars of fixed AES-GCM/encoding overhead + the encoded content itself), which exceeds VARCHAR(150). This is a physical storage limit, not a tuning choice — encrypting this column REQUIRES widening it (typically ALTER COLUMN ... TYPE TEXT), which is a schema change."
+        },
+        {
+          "columnName": "relation",
+          "dataType": "character varying",
+          "characterMaximumLength": 50,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": false,
+          "widthWarning": "VARCHAR(50) is too narrow to hold encrypted data — a value using the full declared width would need roughly 113 characters once encrypted (45 chars of fixed AES-GCM/encoding overhead + the encoded content itself), which exceeds VARCHAR(50). This is a physical storage limit, not a tuning choice — encrypting this column REQUIRES widening it (typically ALTER COLUMN ... TYPE TEXT), which is a schema change."
+        },
+        {
+          "columnName": "gender",
+          "dataType": "character varying",
+          "characterMaximumLength": 20,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": false,
+          "widthWarning": "VARCHAR(20) is too narrow to hold encrypted data — a value using the full declared width would need roughly 73 characters once encrypted (45 chars of fixed AES-GCM/encoding overhead + the encoded content itself), which exceeds VARCHAR(20). This is a physical storage limit, not a tuning choice — encrypting this column REQUIRES widening it (typically ALTER COLUMN ... TYPE TEXT), which is a schema change."
+        },
+        {
+          "columnName": "age",
+          "dataType": "character varying",
+          "characterMaximumLength": 20,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": false,
+          "widthWarning": "VARCHAR(20) is too narrow to hold encrypted data — a value using the full declared width would need roughly 73 characters once encrypted (45 chars of fixed AES-GCM/encoding overhead + the encoded content itself), which exceeds VARCHAR(20). This is a physical storage limit, not a tuning choice — encrypting this column REQUIRES widening it (typically ALTER COLUMN ... TYPE TEXT), which is a schema change."
+        },
+        {
+          "columnName": "education",
+          "dataType": "character varying",
+          "characterMaximumLength": 100,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": false,
+          "widthWarning": "VARCHAR(100) is too narrow to hold encrypted data — a value using the full declared width would need roughly 181 characters once encrypted (45 chars of fixed AES-GCM/encoding overhead + the encoded content itself), which exceeds VARCHAR(100). This is a physical storage limit, not a tuning choice — encrypting this column REQUIRES widening it (typically ALTER COLUMN ... TYPE TEXT), which is a schema change."
+        },
+        {
+          "columnName": "created_at",
+          "dataType": "timestamp without time zone",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": true,
+          "typeHandlingNote": "Column type is \"timestamp without time zone\", not text — encrypted automatically as part of \"encrypt everything\", but confirm this specific column's handling: JSONB values are JSON.stringify'd before encrypting (handled automatically); other non-text types are cast to TEXT first. Review before including in a backfill run if this is an unusual type (array, custom enum, binary/bytea).",
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": true,
+          "defaultValueWarning": "This column has a database DEFAULT value (CURRENT_TIMESTAMP) other than NULL. If application code ever inserts a row WITHOUT explicitly supplying this column, Postgres will silently fill in this PLAINTEXT default, bypassing encryption entirely — this is the exact bug found and fixed for created_at/updated_at during this project (see insertEncryptedRow's AUTO_TIMESTAMP_COLUMN_NAMES handling). Any insert path for this table must be checked to confirm it always explicitly supplies (and encrypts) a value for this column, or extend the same auto-generate-and-encrypt pattern to it.",
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "need",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "income_source",
+          "dataType": "character varying",
+          "characterMaximumLength": 100,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": false,
+          "widthWarning": "VARCHAR(100) is too narrow to hold encrypted data — a value using the full declared width would need roughly 181 characters once encrypted (45 chars of fixed AES-GCM/encoding overhead + the encoded content itself), which exceeds VARCHAR(100). This is a physical storage limit, not a tuning choice — encrypting this column REQUIRES widening it (typically ALTER COLUMN ... TYPE TEXT), which is a schema change."
+        },
+        {
+          "columnName": "pension_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_amount",
+          "dataType": "numeric",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": true,
+          "typeHandlingNote": "Column type is \"numeric\", not text — encrypted automatically as part of \"encrypt everything\", but confirm this specific column's handling: JSONB values are JSON.stringify'd before encrypting (handled automatically); other non-text types are cast to TEXT first. Review before including in a backfill run if this is an unusual type (array, custom enum, binary/bytea).",
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_not_received_reason",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        }
+      ],
+      "existingExcludeConstraints": [],
+      "excludeConstraintWarning": null,
+      "hasMigrationTrackingColumns": false,
+      "suggestedAccessPattern": {
+        "pattern": "A",
+        "reason": "Has an hhid column — looks like a household-linked table. See PATTERN A in the RLS migration."
+      }
+    },
+    {
+      "tableName": "families",
+      "primaryKeyColumn": "sno",
+      "primaryKeyColumns": [
+        "sno"
+      ],
+      "primaryKeyWarning": null,
+      "existingTriggers": [],
+      "triggerWarning": null,
+      "existingCheckConstraints": [
+        {
+          "name": "chk_families_head_of_family_encrypted",
+          "clause": "((head_of_family IS NULL) OR (head_of_family ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_name_encrypted",
+          "clause": "((name IS NULL) OR (name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_hh_identified_encrypted",
+          "clause": "((hh_identified IS NULL) OR (hh_identified ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_family_existing_encrypted",
+          "clause": "((family_existing IS NULL) OR (family_existing ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_family_not_existing_reason_encrypted",
+          "clause": "((family_not_existing_reason IS NULL) OR (family_not_existing_reason ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_caste_encrypted",
+          "clause": "((caste IS NULL) OR (caste ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_sub_caste_encrypted",
+          "clause": "((sub_caste IS NULL) OR (sub_caste ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_aadhaar_number_encrypted",
+          "clause": "((aadhaar_number IS NULL) OR (aadhaar_number ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_ration_card_encrypted",
+          "clause": "((ration_card IS NULL) OR (ration_card ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_pan_card_encrypted",
+          "clause": "((pan_card IS NULL) OR (pan_card ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_voter_id_encrypted",
+          "clause": "((voter_id IS NULL) OR (voter_id ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_district_encrypted",
+          "clause": "((district IS NULL) OR (district ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_family_eligible_encrypted",
+          "clause": "((family_eligible IS NULL) OR (family_eligible ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_family_not_eligible_reason_encrypted",
+          "clause": "((family_not_eligible_reason IS NULL) OR (family_not_eligible_reason ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_spouse_name_encrypted",
+          "clause": "((spouse_name IS NULL) OR (spouse_name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_phone_number_encrypted",
+          "clause": "((phone_number IS NULL) OR (phone_number ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_age_encrypted",
+          "clause": "((age IS NULL) OR (age ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_gender_encrypted",
+          "clause": "((gender IS NULL) OR (gender ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_marital_status_encrypted",
+          "clause": "((marital_status IS NULL) OR (marital_status ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_religion_encrypted",
+          "clause": "((religion IS NULL) OR (religion ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_constituency_encrypted",
+          "clause": "((constituency IS NULL) OR (constituency ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_mandal_city_encrypted",
+          "clause": "((mandal_city IS NULL) OR (mandal_city ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_secretariat_encrypted",
+          "clause": "((secretariat IS NULL) OR (secretariat ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_panchayat_encrypted",
+          "clause": "((panchayat IS NULL) OR (panchayat ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_village_encrypted",
+          "clause": "((village IS NULL) OR (village ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_residence_type_encrypted",
+          "clause": "((residence_type IS NULL) OR (residence_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_house_ownership_encrypted",
+          "clause": "((house_ownership IS NULL) OR (house_ownership ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_eligible_for_housing_encrypted",
+          "clause": "((eligible_for_housing IS NULL) OR (eligible_for_housing ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_housing_sanctioned_encrypted",
+          "clause": "((housing_sanctioned IS NULL) OR (housing_sanctioned ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_house_constructed_encrypted",
+          "clause": "((house_constructed IS NULL) OR (house_constructed ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_house_not_constructed_reason_encrypted",
+          "clause": "((house_not_constructed_reason IS NULL) OR (house_not_constructed_reason ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_toilet_availability_encrypted",
+          "clause": "((toilet_availability IS NULL) OR (toilet_availability ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_gas_connection_encrypted",
+          "clause": "((gas_connection IS NULL) OR (gas_connection ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_drinking_water_source_encrypted",
+          "clause": "((drinking_water_source IS NULL) OR (drinking_water_source ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_water_source_encrypted",
+          "clause": "((water_source IS NULL) OR (water_source ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_agricultural_land_encrypted",
+          "clause": "((agricultural_land IS NULL) OR (agricultural_land ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_agriculture_type_encrypted",
+          "clause": "((agriculture_type IS NULL) OR (agriculture_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_land_holding_encrypted",
+          "clause": "((land_holding IS NULL) OR (land_holding ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_cultivation_area_encrypted",
+          "clause": "((cultivation_area IS NULL) OR (cultivation_area ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_crops_encrypted",
+          "clause": "((crops IS NULL) OR (crops ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_agri_income_encrypted",
+          "clause": "((agri_income IS NULL) OR (agri_income ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_irrigation_source_encrypted",
+          "clause": "((irrigation_source IS NULL) OR (irrigation_source ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_irrigated_area_encrypted",
+          "clause": "((irrigated_area IS NULL) OR (irrigated_area ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_rainfed_area_encrypted",
+          "clause": "((rainfed_area IS NULL) OR (rainfed_area ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_livestock_available_encrypted",
+          "clause": "((livestock_available IS NULL) OR (livestock_available ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_cows_encrypted",
+          "clause": "((cows IS NULL) OR (cows ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_buffalo_count_encrypted",
+          "clause": "((buffalo_count IS NULL) OR (buffalo_count ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_sheep_goat_encrypted",
+          "clause": "((sheep_goat IS NULL) OR (sheep_goat ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_poultry_count_encrypted",
+          "clause": "((poultry_count IS NULL) OR (poultry_count ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_livestock_income_encrypted",
+          "clause": "((livestock_income IS NULL) OR (livestock_income ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_availed_scheme_encrypted",
+          "clause": "((availed_scheme IS NULL) OR (availed_scheme ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_scheme_benefit_encrypted",
+          "clause": "((scheme_benefit IS NULL) OR (scheme_benefit ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_livelihood_type_encrypted",
+          "clause": "((livelihood_type IS NULL) OR (livelihood_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_specific_type_encrypted",
+          "clause": "((specific_type IS NULL) OR (specific_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_in_numbers_encrypted",
+          "clause": "((in_numbers IS NULL) OR (in_numbers ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_family_eligible_support_encrypted",
+          "clause": "((family_eligible_support IS NULL) OR (family_eligible_support ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_eligible_for_pension_encrypted",
+          "clause": "((eligible_for_pension IS NULL) OR (eligible_for_pension ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_getting_pension_encrypted",
+          "clause": "((getting_pension IS NULL) OR (getting_pension ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_pension_type_encrypted",
+          "clause": "((pension_type IS NULL) OR (pension_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_pension_issue_reason_encrypted",
+          "clause": "((pension_issue_reason IS NULL) OR (pension_issue_reason ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_bank_name_encrypted",
+          "clause": "((bank_name IS NULL) OR (bank_name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_branch_name_encrypted",
+          "clause": "((branch_name IS NULL) OR (branch_name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_account_number_encrypted",
+          "clause": "((account_number IS NULL) OR (account_number ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_ifsc_code_encrypted",
+          "clause": "((ifsc_code IS NULL) OR (ifsc_code ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_other_income_encrypted",
+          "clause": "((other_income IS NULL) OR (other_income ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_total_income_encrypted",
+          "clause": "((total_income IS NULL) OR (total_income ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_primary_need_encrypted",
+          "clause": "((primary_need IS NULL) OR (primary_need ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_secondary_need_encrypted",
+          "clause": "((secondary_need IS NULL) OR (secondary_need ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_approval_status_encrypted",
+          "clause": "((approval_status IS NULL) OR (approval_status ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_approved_by_encrypted",
+          "clause": "((approved_by IS NULL) OR (approved_by ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_comments_encrypted",
+          "clause": "((comments IS NULL) OR (comments ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_created_at_encrypted",
+          "clause": "((created_at IS NULL) OR (created_at ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_updated_at_encrypted",
+          "clause": "((updated_at IS NULL) OR (updated_at ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_gp_id_encrypted",
+          "clause": "((gp_id IS NULL) OR (gp_id ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_crp_comments_encrypted",
+          "clause": "((crp_comments IS NULL) OR (crp_comments ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_education_encrypted",
+          "clause": "((education IS NULL) OR (education ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_health_status_encrypted",
+          "clause": "((health_status IS NULL) OR (health_status ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_health_issue_encrypted",
+          "clause": "((health_issue IS NULL) OR (health_issue ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_recipient_name_encrypted",
+          "clause": "((recipient_name IS NULL) OR (recipient_name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_age_group_encrypted",
+          "clause": "((age_group IS NULL) OR (age_group ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_job_card_encrypted",
+          "clause": "((job_card IS NULL) OR (job_card ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_mode_of_cooking_encrypted",
+          "clause": "((mode_of_cooking IS NULL) OR (mode_of_cooking ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_sanitation_encrypted",
+          "clause": "((sanitation IS NULL) OR (sanitation ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_house_type_encrypted",
+          "clause": "((house_type IS NULL) OR (house_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_pension_received_encrypted",
+          "clause": "((pension_received IS NULL) OR (pension_received ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_eligible_not_received_encrypted",
+          "clause": "((eligible_not_received IS NULL) OR (eligible_not_received ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_govt_schemes_encrypted",
+          "clause": "((govt_schemes IS NULL) OR (govt_schemes ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_income_source_encrypted",
+          "clause": "((income_source IS NULL) OR (income_source ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_salaried_type_encrypted",
+          "clause": "((salaried_type IS NULL) OR (salaried_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_other_irrigation_source_encrypted",
+          "clause": "((other_irrigation_source IS NULL) OR (other_irrigation_source ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_occupation_encrypted",
+          "clause": "((occupation IS NULL) OR (occupation ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_shg_member_encrypted",
+          "clause": "((shg_member IS NULL) OR (shg_member ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_shg_name_encrypted",
+          "clause": "((shg_name IS NULL) OR (shg_name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_shg_code_encrypted",
+          "clause": "((shg_code IS NULL) OR (shg_code ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_bank_account_image_encrypted",
+          "clause": "((bank_account_image IS NULL) OR (bank_account_image ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_sheep_count_encrypted",
+          "clause": "((sheep_count IS NULL) OR (sheep_count ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_goat_count_encrypted",
+          "clause": "((goat_count IS NULL) OR (goat_count ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_sno_encrypted",
+          "clause": "((sno IS NULL) OR (sno ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_families_hhid_encrypted",
+          "clause": "((hhid IS NULL) OR (hhid ~ '^v[12]\\.'::text))"
+        }
+      ],
+      "checkConstraintWarning": "This table has 99 CHECK constraint(s): chk_families_head_of_family_encrypted (((head_of_family IS NULL) OR (head_of_family ~ '^v[12]\\.'::text))); chk_families_name_encrypted (((name IS NULL) OR (name ~ '^v[12]\\.'::text))); chk_families_hh_identified_encrypted (((hh_identified IS NULL) OR (hh_identified ~ '^v[12]\\.'::text))); chk_families_family_existing_encrypted (((family_existing IS NULL) OR (family_existing ~ '^v[12]\\.'::text))); chk_families_family_not_existing_reason_encrypted (((family_not_existing_reason IS NULL) OR (family_not_existing_reason ~ '^v[12]\\.'::text))); chk_families_caste_encrypted (((caste IS NULL) OR (caste ~ '^v[12]\\.'::text))); chk_families_sub_caste_encrypted (((sub_caste IS NULL) OR (sub_caste ~ '^v[12]\\.'::text))); chk_families_aadhaar_number_encrypted (((aadhaar_number IS NULL) OR (aadhaar_number ~ '^v[12]\\.'::text))); chk_families_ration_card_encrypted (((ration_card IS NULL) OR (ration_card ~ '^v[12]\\.'::text))); chk_families_pan_card_encrypted (((pan_card IS NULL) OR (pan_card ~ '^v[12]\\.'::text))); chk_families_voter_id_encrypted (((voter_id IS NULL) OR (voter_id ~ '^v[12]\\.'::text))); chk_families_district_encrypted (((district IS NULL) OR (district ~ '^v[12]\\.'::text))); chk_families_family_eligible_encrypted (((family_eligible IS NULL) OR (family_eligible ~ '^v[12]\\.'::text))); chk_families_family_not_eligible_reason_encrypted (((family_not_eligible_reason IS NULL) OR (family_not_eligible_reason ~ '^v[12]\\.'::text))); chk_families_spouse_name_encrypted (((spouse_name IS NULL) OR (spouse_name ~ '^v[12]\\.'::text))); chk_families_phone_number_encrypted (((phone_number IS NULL) OR (phone_number ~ '^v[12]\\.'::text))); chk_families_age_encrypted (((age IS NULL) OR (age ~ '^v[12]\\.'::text))); chk_families_gender_encrypted (((gender IS NULL) OR (gender ~ '^v[12]\\.'::text))); chk_families_marital_status_encrypted (((marital_status IS NULL) OR (marital_status ~ '^v[12]\\.'::text))); chk_families_religion_encrypted (((religion IS NULL) OR (religion ~ '^v[12]\\.'::text))); chk_families_constituency_encrypted (((constituency IS NULL) OR (constituency ~ '^v[12]\\.'::text))); chk_families_mandal_city_encrypted (((mandal_city IS NULL) OR (mandal_city ~ '^v[12]\\.'::text))); chk_families_secretariat_encrypted (((secretariat IS NULL) OR (secretariat ~ '^v[12]\\.'::text))); chk_families_panchayat_encrypted (((panchayat IS NULL) OR (panchayat ~ '^v[12]\\.'::text))); chk_families_village_encrypted (((village IS NULL) OR (village ~ '^v[12]\\.'::text))); chk_families_residence_type_encrypted (((residence_type IS NULL) OR (residence_type ~ '^v[12]\\.'::text))); chk_families_house_ownership_encrypted (((house_ownership IS NULL) OR (house_ownership ~ '^v[12]\\.'::text))); chk_families_eligible_for_housing_encrypted (((eligible_for_housing IS NULL) OR (eligible_for_housing ~ '^v[12]\\.'::text))); chk_families_housing_sanctioned_encrypted (((housing_sanctioned IS NULL) OR (housing_sanctioned ~ '^v[12]\\.'::text))); chk_families_house_constructed_encrypted (((house_constructed IS NULL) OR (house_constructed ~ '^v[12]\\.'::text))); chk_families_house_not_constructed_reason_encrypted (((house_not_constructed_reason IS NULL) OR (house_not_constructed_reason ~ '^v[12]\\.'::text))); chk_families_toilet_availability_encrypted (((toilet_availability IS NULL) OR (toilet_availability ~ '^v[12]\\.'::text))); chk_families_gas_connection_encrypted (((gas_connection IS NULL) OR (gas_connection ~ '^v[12]\\.'::text))); chk_families_drinking_water_source_encrypted (((drinking_water_source IS NULL) OR (drinking_water_source ~ '^v[12]\\.'::text))); chk_families_water_source_encrypted (((water_source IS NULL) OR (water_source ~ '^v[12]\\.'::text))); chk_families_agricultural_land_encrypted (((agricultural_land IS NULL) OR (agricultural_land ~ '^v[12]\\.'::text))); chk_families_agriculture_type_encrypted (((agriculture_type IS NULL) OR (agriculture_type ~ '^v[12]\\.'::text))); chk_families_land_holding_encrypted (((land_holding IS NULL) OR (land_holding ~ '^v[12]\\.'::text))); chk_families_cultivation_area_encrypted (((cultivation_area IS NULL) OR (cultivation_area ~ '^v[12]\\.'::text))); chk_families_crops_encrypted (((crops IS NULL) OR (crops ~ '^v[12]\\.'::text))); chk_families_agri_income_encrypted (((agri_income IS NULL) OR (agri_income ~ '^v[12]\\.'::text))); chk_families_irrigation_source_encrypted (((irrigation_source IS NULL) OR (irrigation_source ~ '^v[12]\\.'::text))); chk_families_irrigated_area_encrypted (((irrigated_area IS NULL) OR (irrigated_area ~ '^v[12]\\.'::text))); chk_families_rainfed_area_encrypted (((rainfed_area IS NULL) OR (rainfed_area ~ '^v[12]\\.'::text))); chk_families_livestock_available_encrypted (((livestock_available IS NULL) OR (livestock_available ~ '^v[12]\\.'::text))); chk_families_cows_encrypted (((cows IS NULL) OR (cows ~ '^v[12]\\.'::text))); chk_families_buffalo_count_encrypted (((buffalo_count IS NULL) OR (buffalo_count ~ '^v[12]\\.'::text))); chk_families_sheep_goat_encrypted (((sheep_goat IS NULL) OR (sheep_goat ~ '^v[12]\\.'::text))); chk_families_poultry_count_encrypted (((poultry_count IS NULL) OR (poultry_count ~ '^v[12]\\.'::text))); chk_families_livestock_income_encrypted (((livestock_income IS NULL) OR (livestock_income ~ '^v[12]\\.'::text))); chk_families_availed_scheme_encrypted (((availed_scheme IS NULL) OR (availed_scheme ~ '^v[12]\\.'::text))); chk_families_scheme_benefit_encrypted (((scheme_benefit IS NULL) OR (scheme_benefit ~ '^v[12]\\.'::text))); chk_families_livelihood_type_encrypted (((livelihood_type IS NULL) OR (livelihood_type ~ '^v[12]\\.'::text))); chk_families_specific_type_encrypted (((specific_type IS NULL) OR (specific_type ~ '^v[12]\\.'::text))); chk_families_in_numbers_encrypted (((in_numbers IS NULL) OR (in_numbers ~ '^v[12]\\.'::text))); chk_families_family_eligible_support_encrypted (((family_eligible_support IS NULL) OR (family_eligible_support ~ '^v[12]\\.'::text))); chk_families_eligible_for_pension_encrypted (((eligible_for_pension IS NULL) OR (eligible_for_pension ~ '^v[12]\\.'::text))); chk_families_getting_pension_encrypted (((getting_pension IS NULL) OR (getting_pension ~ '^v[12]\\.'::text))); chk_families_pension_type_encrypted (((pension_type IS NULL) OR (pension_type ~ '^v[12]\\.'::text))); chk_families_pension_issue_reason_encrypted (((pension_issue_reason IS NULL) OR (pension_issue_reason ~ '^v[12]\\.'::text))); chk_families_bank_name_encrypted (((bank_name IS NULL) OR (bank_name ~ '^v[12]\\.'::text))); chk_families_branch_name_encrypted (((branch_name IS NULL) OR (branch_name ~ '^v[12]\\.'::text))); chk_families_account_number_encrypted (((account_number IS NULL) OR (account_number ~ '^v[12]\\.'::text))); chk_families_ifsc_code_encrypted (((ifsc_code IS NULL) OR (ifsc_code ~ '^v[12]\\.'::text))); chk_families_other_income_encrypted (((other_income IS NULL) OR (other_income ~ '^v[12]\\.'::text))); chk_families_total_income_encrypted (((total_income IS NULL) OR (total_income ~ '^v[12]\\.'::text))); chk_families_primary_need_encrypted (((primary_need IS NULL) OR (primary_need ~ '^v[12]\\.'::text))); chk_families_secondary_need_encrypted (((secondary_need IS NULL) OR (secondary_need ~ '^v[12]\\.'::text))); chk_families_approval_status_encrypted (((approval_status IS NULL) OR (approval_status ~ '^v[12]\\.'::text))); chk_families_approved_by_encrypted (((approved_by IS NULL) OR (approved_by ~ '^v[12]\\.'::text))); chk_families_comments_encrypted (((comments IS NULL) OR (comments ~ '^v[12]\\.'::text))); chk_families_created_at_encrypted (((created_at IS NULL) OR (created_at ~ '^v[12]\\.'::text))); chk_families_updated_at_encrypted (((updated_at IS NULL) OR (updated_at ~ '^v[12]\\.'::text))); chk_families_gp_id_encrypted (((gp_id IS NULL) OR (gp_id ~ '^v[12]\\.'::text))); chk_families_crp_comments_encrypted (((crp_comments IS NULL) OR (crp_comments ~ '^v[12]\\.'::text))); chk_families_education_encrypted (((education IS NULL) OR (education ~ '^v[12]\\.'::text))); chk_families_health_status_encrypted (((health_status IS NULL) OR (health_status ~ '^v[12]\\.'::text))); chk_families_health_issue_encrypted (((health_issue IS NULL) OR (health_issue ~ '^v[12]\\.'::text))); chk_families_recipient_name_encrypted (((recipient_name IS NULL) OR (recipient_name ~ '^v[12]\\.'::text))); chk_families_age_group_encrypted (((age_group IS NULL) OR (age_group ~ '^v[12]\\.'::text))); chk_families_job_card_encrypted (((job_card IS NULL) OR (job_card ~ '^v[12]\\.'::text))); chk_families_mode_of_cooking_encrypted (((mode_of_cooking IS NULL) OR (mode_of_cooking ~ '^v[12]\\.'::text))); chk_families_sanitation_encrypted (((sanitation IS NULL) OR (sanitation ~ '^v[12]\\.'::text))); chk_families_house_type_encrypted (((house_type IS NULL) OR (house_type ~ '^v[12]\\.'::text))); chk_families_pension_received_encrypted (((pension_received IS NULL) OR (pension_received ~ '^v[12]\\.'::text))); chk_families_eligible_not_received_encrypted (((eligible_not_received IS NULL) OR (eligible_not_received ~ '^v[12]\\.'::text))); chk_families_govt_schemes_encrypted (((govt_schemes IS NULL) OR (govt_schemes ~ '^v[12]\\.'::text))); chk_families_income_source_encrypted (((income_source IS NULL) OR (income_source ~ '^v[12]\\.'::text))); chk_families_salaried_type_encrypted (((salaried_type IS NULL) OR (salaried_type ~ '^v[12]\\.'::text))); chk_families_other_irrigation_source_encrypted (((other_irrigation_source IS NULL) OR (other_irrigation_source ~ '^v[12]\\.'::text))); chk_families_occupation_encrypted (((occupation IS NULL) OR (occupation ~ '^v[12]\\.'::text))); chk_families_shg_member_encrypted (((shg_member IS NULL) OR (shg_member ~ '^v[12]\\.'::text))); chk_families_shg_name_encrypted (((shg_name IS NULL) OR (shg_name ~ '^v[12]\\.'::text))); chk_families_shg_code_encrypted (((shg_code IS NULL) OR (shg_code ~ '^v[12]\\.'::text))); chk_families_bank_account_image_encrypted (((bank_account_image IS NULL) OR (bank_account_image ~ '^v[12]\\.'::text))); chk_families_sheep_count_encrypted (((sheep_count IS NULL) OR (sheep_count ~ '^v[12]\\.'::text))); chk_families_goat_count_encrypted (((goat_count IS NULL) OR (goat_count ~ '^v[12]\\.'::text))); chk_families_sno_encrypted (((sno IS NULL) OR (sno ~ '^v[12]\\.'::text))); chk_families_hhid_encrypted (((hhid IS NULL) OR (hhid ~ '^v[12]\\.'::text))). A CHECK constraint validates a column against a FIXED RULE — ciphertext can NEVER satisfy a rule like \"must be one of these exact words\" or \"must match this pattern\", under ANY encryption method. Unlike a foreign key, deterministic encryption does NOT solve this. There are only two options for any column a CHECK constraint applies to: (1) DROP the constraint permanently and encrypt the column, losing the database's automatic validation of that column going forward, or (2) leave the column unencrypted and keep the constraint. This tool cannot make this decision — the note above only ensures it's never silently missed.",
+      "columns": [
+        {
+          "columnName": "sno",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": true,
+          "doNotEncryptReason": "This table's primary key — encrypting it would make every row unfindable/unjoinable",
+          "checkConstraintsToAutoDrop": [
+            "chk_families_sno_encrypted"
+          ],
+          "deterministicEncrypt": true,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "hhid",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": true,
+          "doNotEncryptReason": "Referenced by foreign key family_members.hhid — encrypting this would break that relationship and any ON DELETE CASCADE behavior; also referenced by children.hhid; also referenced by family_members.hhid; also referenced by children.hhid; also referenced by family_members.hhid; also referenced by children.hhid; also referenced by family_members.hhid; also referenced by children.hhid",
+          "checkConstraintsToAutoDrop": [
+            "chk_families_hhid_encrypted"
+          ],
+          "deterministicEncrypt": true,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "head_of_family",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_head_of_family_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_name_encrypted",
+            "chk_families_spouse_name_encrypted",
+            "chk_families_bank_name_encrypted",
+            "chk_families_branch_name_encrypted",
+            "chk_families_recipient_name_encrypted",
+            "chk_families_shg_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "hh_identified",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_hh_identified_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "family_existing",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_family_existing_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "family_not_existing_reason",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_family_not_existing_reason_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "family_eligible",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_family_eligible_encrypted",
+            "chk_families_family_eligible_support_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "family_not_eligible_reason",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_family_not_eligible_reason_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "spouse_name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_spouse_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "phone_number",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_phone_number_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "age",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_age_encrypted",
+            "chk_families_village_encrypted",
+            "chk_families_age_group_encrypted",
+            "chk_families_bank_account_image_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "gender",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_gender_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "marital_status",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_marital_status_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "religion",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_religion_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "caste",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_caste_encrypted",
+            "chk_families_sub_caste_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "sub_caste",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_sub_caste_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "aadhaar_number",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_aadhaar_number_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "ration_card",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_ration_card_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pan_card",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_pan_card_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "voter_id",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_voter_id_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "district",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_district_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "constituency",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_constituency_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "mandal_city",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_mandal_city_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "secretariat",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_secretariat_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "panchayat",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_panchayat_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "village",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_village_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "residence_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_residence_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "house_ownership",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_house_ownership_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "eligible_for_housing",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_eligible_for_housing_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "housing_sanctioned",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_housing_sanctioned_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "house_constructed",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_house_constructed_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "house_not_constructed_reason",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_house_not_constructed_reason_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "toilet_availability",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_toilet_availability_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "gas_connection",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_gas_connection_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "drinking_water_source",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_drinking_water_source_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "water_source",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_drinking_water_source_encrypted",
+            "chk_families_water_source_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "agricultural_land",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_agricultural_land_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "agriculture_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_agriculture_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "land_holding",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_land_holding_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "cultivation_area",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_cultivation_area_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "crops",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_crops_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "agri_income",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_agri_income_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "irrigation_source",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_irrigation_source_encrypted",
+            "chk_families_other_irrigation_source_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "irrigated_area",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_irrigated_area_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "rainfed_area",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_rainfed_area_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "livestock_available",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_livestock_available_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "cows",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_cows_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "buffalo_count",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_buffalo_count_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "sheep_goat",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_sheep_goat_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "poultry_count",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_poultry_count_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "livestock_income",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_livestock_income_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "availed_scheme",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_availed_scheme_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "scheme_benefit",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_scheme_benefit_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "livelihood_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_livelihood_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "specific_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_specific_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "in_numbers",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_in_numbers_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "family_eligible_support",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_family_eligible_support_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "eligible_for_pension",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_eligible_for_pension_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "getting_pension",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_getting_pension_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_pension_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_issue_reason",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_pension_issue_reason_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "bank_name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_bank_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "branch_name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_branch_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "account_number",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_account_number_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "ifsc_code",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_ifsc_code_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "other_income",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_other_income_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "total_income",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_total_income_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "primary_need",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_primary_need_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "secondary_need",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_secondary_need_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "approval_status",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_approval_status_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "approved_by",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_approved_by_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "comments",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_comments_encrypted",
+            "chk_families_crp_comments_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "created_at",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_created_at_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "updated_at",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_updated_at_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "gp_id",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_gp_id_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "crp_comments",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_crp_comments_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "education",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_education_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "health_status",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_health_status_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "health_issue",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_health_issue_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "recipient_name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_recipient_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "age_group",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_age_group_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "job_card",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_job_card_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "mode_of_cooking",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_mode_of_cooking_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "sanitation",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_sanitation_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "house_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_house_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_received",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_pension_received_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "eligible_not_received",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_eligible_not_received_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "govt_schemes",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_govt_schemes_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "income_source",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_income_source_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "salaried_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_salaried_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "other_irrigation_source",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_other_irrigation_source_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "occupation",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_occupation_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "shg_member",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_shg_member_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "shg_name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_shg_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "shg_code",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_shg_code_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "bank_account_image",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_bank_account_image_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "sheep_count",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_sheep_count_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "goat_count",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_families_goat_count_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        }
+      ],
+      "existingExcludeConstraints": [],
+      "excludeConstraintWarning": null,
+      "hasMigrationTrackingColumns": true,
+      "suggestedAccessPattern": {
+        "pattern": "A",
+        "reason": "Has an hhid column — looks like a household-linked table. See PATTERN A in the RLS migration."
+      }
+    },
+    {
+      "tableName": "family_members",
+      "primaryKeyColumn": "id",
+      "primaryKeyColumns": [
+        "id"
+      ],
+      "primaryKeyWarning": null,
+      "existingTriggers": [],
+      "triggerWarning": null,
+      "existingCheckConstraints": [
+        {
+          "name": "chk_family_members_name_encrypted",
+          "clause": "((name IS NULL) OR (name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_relation_encrypted",
+          "clause": "((relation IS NULL) OR (relation ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_gender_encrypted",
+          "clause": "((gender IS NULL) OR (gender ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_age_encrypted",
+          "clause": "((age IS NULL) OR (age ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_aadhaar_encrypted",
+          "clause": "((aadhaar IS NULL) OR (aadhaar ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_education_encrypted",
+          "clause": "((education IS NULL) OR (education ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_occupation_encrypted",
+          "clause": "((occupation IS NULL) OR (occupation ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_employment_type_encrypted",
+          "clause": "((employment_type IS NULL) OR (employment_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_self_employment_type_encrypted",
+          "clause": "((self_employment_type IS NULL) OR (self_employment_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_monthly_income_encrypted",
+          "clause": "((monthly_income IS NULL) OR (monthly_income ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_health_status_encrypted",
+          "clause": "((health_status IS NULL) OR (health_status ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_health_issue_encrypted",
+          "clause": "((health_issue IS NULL) OR (health_issue ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_pension_encrypted",
+          "clause": "((pension IS NULL) OR (pension ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_created_at_encrypted",
+          "clause": "((created_at IS NULL) OR (created_at ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_need_encrypted",
+          "clause": "((need IS NULL) OR (need ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_income_source_encrypted",
+          "clause": "((income_source IS NULL) OR (income_source ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_pension_type_encrypted",
+          "clause": "((pension_type IS NULL) OR (pension_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_pension_amount_encrypted",
+          "clause": "((pension_amount IS NULL) OR (pension_amount ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_pension_not_received_reason_encrypted",
+          "clause": "((pension_not_received_reason IS NULL) OR (pension_not_received_reason ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_id_encrypted",
+          "clause": "((id IS NULL) OR (id ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_family_members_hhid_encrypted",
+          "clause": "((hhid IS NULL) OR (hhid ~ '^v[12]\\.'::text))"
+        }
+      ],
+      "checkConstraintWarning": "This table has 21 CHECK constraint(s): chk_family_members_name_encrypted (((name IS NULL) OR (name ~ '^v[12]\\.'::text))); chk_family_members_relation_encrypted (((relation IS NULL) OR (relation ~ '^v[12]\\.'::text))); chk_family_members_gender_encrypted (((gender IS NULL) OR (gender ~ '^v[12]\\.'::text))); chk_family_members_age_encrypted (((age IS NULL) OR (age ~ '^v[12]\\.'::text))); chk_family_members_aadhaar_encrypted (((aadhaar IS NULL) OR (aadhaar ~ '^v[12]\\.'::text))); chk_family_members_education_encrypted (((education IS NULL) OR (education ~ '^v[12]\\.'::text))); chk_family_members_occupation_encrypted (((occupation IS NULL) OR (occupation ~ '^v[12]\\.'::text))); chk_family_members_employment_type_encrypted (((employment_type IS NULL) OR (employment_type ~ '^v[12]\\.'::text))); chk_family_members_self_employment_type_encrypted (((self_employment_type IS NULL) OR (self_employment_type ~ '^v[12]\\.'::text))); chk_family_members_monthly_income_encrypted (((monthly_income IS NULL) OR (monthly_income ~ '^v[12]\\.'::text))); chk_family_members_health_status_encrypted (((health_status IS NULL) OR (health_status ~ '^v[12]\\.'::text))); chk_family_members_health_issue_encrypted (((health_issue IS NULL) OR (health_issue ~ '^v[12]\\.'::text))); chk_family_members_pension_encrypted (((pension IS NULL) OR (pension ~ '^v[12]\\.'::text))); chk_family_members_created_at_encrypted (((created_at IS NULL) OR (created_at ~ '^v[12]\\.'::text))); chk_family_members_need_encrypted (((need IS NULL) OR (need ~ '^v[12]\\.'::text))); chk_family_members_income_source_encrypted (((income_source IS NULL) OR (income_source ~ '^v[12]\\.'::text))); chk_family_members_pension_type_encrypted (((pension_type IS NULL) OR (pension_type ~ '^v[12]\\.'::text))); chk_family_members_pension_amount_encrypted (((pension_amount IS NULL) OR (pension_amount ~ '^v[12]\\.'::text))); chk_family_members_pension_not_received_reason_encrypted (((pension_not_received_reason IS NULL) OR (pension_not_received_reason ~ '^v[12]\\.'::text))); chk_family_members_id_encrypted (((id IS NULL) OR (id ~ '^v[12]\\.'::text))); chk_family_members_hhid_encrypted (((hhid IS NULL) OR (hhid ~ '^v[12]\\.'::text))). A CHECK constraint validates a column against a FIXED RULE — ciphertext can NEVER satisfy a rule like \"must be one of these exact words\" or \"must match this pattern\", under ANY encryption method. Unlike a foreign key, deterministic encryption does NOT solve this. There are only two options for any column a CHECK constraint applies to: (1) DROP the constraint permanently and encrypt the column, losing the database's automatic validation of that column going forward, or (2) leave the column unencrypted and keep the constraint. This tool cannot make this decision — the note above only ensures it's never silently missed.",
+      "columns": [
+        {
+          "columnName": "id",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": true,
+          "doNotEncryptReason": "This table's primary key — encrypting it would make every row unfindable/unjoinable",
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_id_encrypted",
+            "chk_family_members_hhid_encrypted"
+          ],
+          "deterministicEncrypt": true,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "hhid",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": true,
+          "doNotEncryptReason": "Foreign key referencing families.hhid",
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_hhid_encrypted"
+          ],
+          "deterministicEncrypt": true,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "relation",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_relation_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "gender",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_gender_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "age",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_age_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "aadhaar",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_aadhaar_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "education",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_education_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "occupation",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_occupation_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "employment_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_employment_type_encrypted",
+            "chk_family_members_self_employment_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "self_employment_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_self_employment_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "monthly_income",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_monthly_income_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "health_status",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_health_status_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "health_issue",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_health_issue_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_pension_encrypted",
+            "chk_family_members_pension_type_encrypted",
+            "chk_family_members_pension_amount_encrypted",
+            "chk_family_members_pension_not_received_reason_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "created_at",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_created_at_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "need",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_need_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "income_source",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_income_source_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_pension_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_amount",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_pension_amount_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_not_received_reason",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_family_members_pension_not_received_reason_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        }
+      ],
+      "existingExcludeConstraints": [],
+      "excludeConstraintWarning": null,
+      "hasMigrationTrackingColumns": true,
+      "suggestedAccessPattern": {
+        "pattern": "A",
+        "reason": "Has an hhid column — looks like a household-linked table. See PATTERN A in the RLS migration."
+      }
+    },
+    {
+      "tableName": "friends",
+      "primaryKeyColumn": "id",
+      "primaryKeyColumns": [
+        "id"
+      ],
+      "primaryKeyWarning": null,
+      "existingTriggers": [],
+      "triggerWarning": null,
+      "existingCheckConstraints": [
+        {
+          "name": "chk_friends_hhid_encrypted",
+          "clause": "((hhid IS NULL) OR (hhid ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_name_encrypted",
+          "clause": "((name IS NULL) OR (name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_relation_encrypted",
+          "clause": "((relation IS NULL) OR (relation ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_gender_encrypted",
+          "clause": "((gender IS NULL) OR (gender ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_age_encrypted",
+          "clause": "((age IS NULL) OR (age ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_education_encrypted",
+          "clause": "((education IS NULL) OR (education ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_created_at_encrypted",
+          "clause": "((created_at IS NULL) OR (created_at ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_need_encrypted",
+          "clause": "((need IS NULL) OR (need ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_income_source_encrypted",
+          "clause": "((income_source IS NULL) OR (income_source ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_pension_type_encrypted",
+          "clause": "((pension_type IS NULL) OR (pension_type ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_pension_amount_encrypted",
+          "clause": "((pension_amount IS NULL) OR (pension_amount ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_pension_not_received_reason_encrypted",
+          "clause": "((pension_not_received_reason IS NULL) OR (pension_not_received_reason ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_friends_id_encrypted",
+          "clause": "((id IS NULL) OR (id ~ '^v[12]\\.'::text))"
+        }
+      ],
+      "checkConstraintWarning": "This table has 13 CHECK constraint(s): chk_friends_hhid_encrypted (((hhid IS NULL) OR (hhid ~ '^v[12]\\.'::text))); chk_friends_name_encrypted (((name IS NULL) OR (name ~ '^v[12]\\.'::text))); chk_friends_relation_encrypted (((relation IS NULL) OR (relation ~ '^v[12]\\.'::text))); chk_friends_gender_encrypted (((gender IS NULL) OR (gender ~ '^v[12]\\.'::text))); chk_friends_age_encrypted (((age IS NULL) OR (age ~ '^v[12]\\.'::text))); chk_friends_education_encrypted (((education IS NULL) OR (education ~ '^v[12]\\.'::text))); chk_friends_created_at_encrypted (((created_at IS NULL) OR (created_at ~ '^v[12]\\.'::text))); chk_friends_need_encrypted (((need IS NULL) OR (need ~ '^v[12]\\.'::text))); chk_friends_income_source_encrypted (((income_source IS NULL) OR (income_source ~ '^v[12]\\.'::text))); chk_friends_pension_type_encrypted (((pension_type IS NULL) OR (pension_type ~ '^v[12]\\.'::text))); chk_friends_pension_amount_encrypted (((pension_amount IS NULL) OR (pension_amount ~ '^v[12]\\.'::text))); chk_friends_pension_not_received_reason_encrypted (((pension_not_received_reason IS NULL) OR (pension_not_received_reason ~ '^v[12]\\.'::text))); chk_friends_id_encrypted (((id IS NULL) OR (id ~ '^v[12]\\.'::text))). A CHECK constraint validates a column against a FIXED RULE — ciphertext can NEVER satisfy a rule like \"must be one of these exact words\" or \"must match this pattern\", under ANY encryption method. Unlike a foreign key, deterministic encryption does NOT solve this. There are only two options for any column a CHECK constraint applies to: (1) DROP the constraint permanently and encrypt the column, losing the database's automatic validation of that column going forward, or (2) leave the column unencrypted and keep the constraint. This tool cannot make this decision — the note above only ensures it's never silently missed.",
+      "columns": [
+        {
+          "columnName": "id",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": true,
+          "doNotEncryptReason": "This table's primary key — encrypting it would make every row unfindable/unjoinable",
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_hhid_encrypted",
+            "chk_friends_id_encrypted"
+          ],
+          "deterministicEncrypt": true,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "hhid",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_hhid_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "relation",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_relation_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "gender",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_gender_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "age",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_age_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "education",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_education_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "created_at",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_created_at_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "need",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_need_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "income_source",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_income_source_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_type",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_pension_type_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_amount",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_pension_amount_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "pension_not_received_reason",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_friends_pension_not_received_reason_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        }
+      ],
+      "existingExcludeConstraints": [],
+      "excludeConstraintWarning": null,
+      "hasMigrationTrackingColumns": true,
+      "suggestedAccessPattern": {
+        "pattern": "A",
+        "reason": "Has an hhid column — looks like a household-linked table. See PATTERN A in the RLS migration."
+      }
+    },
+    {
+      "tableName": "submitted_baseline_forms",
+      "primaryKeyColumn": "id",
+      "primaryKeyColumns": [
+        "id"
+      ],
+      "primaryKeyWarning": null,
+      "existingTriggers": [],
+      "triggerWarning": null,
+      "existingCheckConstraints": [
+        {
+          "name": "chk_submitted_baseline_forms_hhid_encrypted",
+          "clause": "((hhid IS NULL) OR (hhid ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_submitted_by_id_encrypted",
+          "clause": "((submitted_by_id IS NULL) OR (submitted_by_id ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_submitted_by_name_encrypted",
+          "clause": "((submitted_by_name IS NULL) OR (submitted_by_name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_submitted_by_role_encrypted",
+          "clause": "((submitted_by_role IS NULL) OR (submitted_by_role ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_status_encrypted",
+          "clause": "((status IS NULL) OR (status ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_original_family_encrypted",
+          "clause": "((original_family IS NULL) OR (original_family ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_updated_family_encrypted",
+          "clause": "((updated_family IS NULL) OR (updated_family ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_original_members_encrypted",
+          "clause": "((original_members IS NULL) OR (original_members ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_updated_members_encrypted",
+          "clause": "((updated_members IS NULL) OR (updated_members ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_changed_fields_encrypted",
+          "clause": "((changed_fields IS NULL) OR (changed_fields ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_created_at_encrypted",
+          "clause": "((created_at IS NULL) OR (created_at ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_reviewed_at_encrypted",
+          "clause": "((reviewed_at IS NULL) OR (reviewed_at ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_reviewed_by_id_encrypted",
+          "clause": "((reviewed_by_id IS NULL) OR (reviewed_by_id ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_reviewed_by_name_encrypted",
+          "clause": "((reviewed_by_name IS NULL) OR (reviewed_by_name ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_photos_encrypted",
+          "clause": "((photos IS NULL) OR (photos ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_crp_comments_encrypted",
+          "clause": "((crp_comments IS NULL) OR (crp_comments ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_reviewer_comments_encrypted",
+          "clause": "((reviewer_comments IS NULL) OR (reviewer_comments ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_recheck_reason_encrypted",
+          "clause": "((recheck_reason IS NULL) OR (recheck_reason ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_location_encrypted",
+          "clause": "((location IS NULL) OR (location ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_bank_image_encrypted",
+          "clause": "((bank_image IS NULL) OR (bank_image ~ '^v[12]\\.'::text))"
+        },
+        {
+          "name": "chk_submitted_baseline_forms_id_encrypted",
+          "clause": "((id IS NULL) OR (id ~ '^v[12]\\.'::text))"
+        }
+      ],
+      "checkConstraintWarning": "This table has 21 CHECK constraint(s): chk_submitted_baseline_forms_hhid_encrypted (((hhid IS NULL) OR (hhid ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_submitted_by_id_encrypted (((submitted_by_id IS NULL) OR (submitted_by_id ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_submitted_by_name_encrypted (((submitted_by_name IS NULL) OR (submitted_by_name ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_submitted_by_role_encrypted (((submitted_by_role IS NULL) OR (submitted_by_role ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_status_encrypted (((status IS NULL) OR (status ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_original_family_encrypted (((original_family IS NULL) OR (original_family ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_updated_family_encrypted (((updated_family IS NULL) OR (updated_family ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_original_members_encrypted (((original_members IS NULL) OR (original_members ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_updated_members_encrypted (((updated_members IS NULL) OR (updated_members ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_changed_fields_encrypted (((changed_fields IS NULL) OR (changed_fields ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_created_at_encrypted (((created_at IS NULL) OR (created_at ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_reviewed_at_encrypted (((reviewed_at IS NULL) OR (reviewed_at ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_reviewed_by_id_encrypted (((reviewed_by_id IS NULL) OR (reviewed_by_id ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_reviewed_by_name_encrypted (((reviewed_by_name IS NULL) OR (reviewed_by_name ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_photos_encrypted (((photos IS NULL) OR (photos ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_crp_comments_encrypted (((crp_comments IS NULL) OR (crp_comments ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_reviewer_comments_encrypted (((reviewer_comments IS NULL) OR (reviewer_comments ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_recheck_reason_encrypted (((recheck_reason IS NULL) OR (recheck_reason ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_location_encrypted (((location IS NULL) OR (location ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_bank_image_encrypted (((bank_image IS NULL) OR (bank_image ~ '^v[12]\\.'::text))); chk_submitted_baseline_forms_id_encrypted (((id IS NULL) OR (id ~ '^v[12]\\.'::text))). A CHECK constraint validates a column against a FIXED RULE — ciphertext can NEVER satisfy a rule like \"must be one of these exact words\" or \"must match this pattern\", under ANY encryption method. Unlike a foreign key, deterministic encryption does NOT solve this. There are only two options for any column a CHECK constraint applies to: (1) DROP the constraint permanently and encrypt the column, losing the database's automatic validation of that column going forward, or (2) leave the column unencrypted and keep the constraint. This tool cannot make this decision — the note above only ensures it's never silently missed.",
+      "columns": [
+        {
+          "columnName": "id",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": true,
+          "doNotEncryptReason": "This table's primary key — encrypting it would make every row unfindable/unjoinable",
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_hhid_encrypted",
+            "chk_submitted_baseline_forms_submitted_by_id_encrypted",
+            "chk_submitted_baseline_forms_reviewed_by_id_encrypted",
+            "chk_submitted_baseline_forms_id_encrypted"
+          ],
+          "deterministicEncrypt": true,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "hhid",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_hhid_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "submitted_by_id",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": false,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_submitted_by_id_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "submitted_by_name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_submitted_by_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "submitted_by_role",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_submitted_by_role_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "status",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_status_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "original_family",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_original_family_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "updated_family",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_updated_family_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "original_members",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_original_members_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "updated_members",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_updated_members_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "changed_fields",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_changed_fields_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "created_at",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_created_at_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "reviewed_at",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_reviewed_at_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "reviewed_by_id",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_reviewed_by_id_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "reviewed_by_name",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_reviewed_by_name_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "photos",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_photos_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "crp_comments",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_crp_comments_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "reviewer_comments",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_reviewer_comments_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "recheck_reason",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_recheck_reason_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "location",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_location_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        },
+        {
+          "columnName": "bank_image",
+          "dataType": "text",
+          "characterMaximumLength": null,
+          "nullable": true,
+          "doNotEncrypt": false,
+          "doNotEncryptReason": null,
+          "checkConstraintsToAutoDrop": [
+            "chk_submitted_baseline_forms_bank_image_encrypted"
+          ],
+          "deterministicEncrypt": false,
+          "needsSpecialTypeHandling": false,
+          "typeHandlingNote": null,
+          "isEnumType": false,
+          "enumWarning": null,
+          "hasMeaningfulDefault": false,
+          "defaultValueWarning": null,
+          "hasStandaloneUniqueConstraint": false,
+          "isCompositeUniqueConstraint": false,
+          "uniquenessWarning": null,
+          "widthFeasible": true,
+          "widthWarning": null
+        }
+      ],
+      "existingExcludeConstraints": [],
+      "excludeConstraintWarning": null,
+      "hasMigrationTrackingColumns": true,
+      "suggestedAccessPattern": {
+        "pattern": "B",
+        "reason": "Has submitted_by_id/reviewed_by_id — looks like a workflow/submission table. See PATTERN B in the RLS migration."
+      }
+    }
+  ],
+  "automaticExecution": true
+}
